@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Welcome — Login / Sign Up</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Urbanist:wght@300;400;600;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .icon-img {
+      width: 40px;
+      height: 40px;
+      object-fit: contain;
+      vertical-align: middle;
+      margin-right: 6px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <div class="app-header">
+      <header class="hero">
+        <h1 class="brand">Lost &amp; Found</h1>
+        <p class="tag">Securely manage accounts</p>
+      </header>
+      <div class="theme-control">
+        <span class="theme-label">Theme</span>
+        <div class="toggle-switch">
+          <input type="checkbox" id="themeToggle" class="toggle-input" aria-label="Toggle dark Mode">
+          <label for="themeToggle" class="toggle-label">
+            <span class="toggle-circle"></span>
+            <span class="toggle-text dark-text"> </span>
+            <span class="toggle-text light-text"> </span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <main class="card" role="main" id="authCard">
+      <div class="form-switch" role="tablist" aria-label="Authentication tabs">
+        <button id="loginTab" class="tab active" role="tab" aria-selected="true">Login</button>
+        <button id="signupTab" class="tab" role="tab">Sign Up</button>
+      </div>
+
+      <form id="loginForm" class="form active" novalidate>
+        <h2 class="title">Login to your account</h2>
+        <label class="field">Email
+          <input type="email" name="email" placeholder="you@example.com" required>
+        </label>
+        <label class="field">Password
+          <input type="password" name="password" placeholder="••••••••" required>
+        </label>
+        <button class="btn primary" type="submit">Login</button>
+        <p class="muted">Don't have an account? <a id="toSignup" href="#">Create one</a></p>
+      </form>
+
+      <form id="signupForm" class="form" novalidate>
+        <h2 class="title">Create a new account</h2>
+        <label class="field">Full name
+          <input type="text" name="name" placeholder="Your name" required>
+        </label>
+        <label class="field">Email
+          <input type="email" name="email" placeholder="you@example.com" required>
+        </label>
+        <label class="field">Password
+          <input type="password" name="password" placeholder="Minimum 8 characters" required>
+        </label>
+        <label class="field">Confirm Password
+          <input type="password" name="confirm" placeholder="Repeat password" required>
+        </label>
+        <button class="btn accent" type="submit">Sign Up</button>
+        <p class="muted">Already have an account? <a id="toLogin" href="#">Sign in</a></p>
+      </form>
+    </main>
+
+    <footer class="foot">© 2026 Lost &amp; Found</footer>
+  </div>
+
+  <!-- Choice Screen -->
+  <div id="choiceScreen" class="choice-screen hidden">
+    <button id="findBtn" class="big-btn red-btn">Find Your Lost Item</button>
+    <button id="reportBtn" class="big-btn blue-btn">Report A Lost Item</button>
+  </div>
+
+  <!-- Dashboard Section -->
+  <div id="dashboard" class="dashboard hidden">
+    <header class="dashboard-header">
+      <div class="dashboard-left">
+        <button id="menuToggle" class="menu-toggle" aria-label="Toggle menu">
+          <span class="menu-icon" aria-hidden="true">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+          </span>
+        </button>
+        <h1 class="dashboard-title">
+          <span class="title-red">Find Your Lost Belongings</span>
+          <span class="title-blue">Help Someone With Their Lost Belongings</span>
+        </h1>
+      </div>
+      <button id="settingsBtn" class="settings-btn" aria-label="Settings">
+        <img src="image-removebg-preview (19).png" alt="Profile Icon" class="icon-img">
+      </button>
+    </header>
+
+    <!-- Settings Panel -->
+    <div id="settingsPanel" class="settings-panel hidden" aria-hidden="true">
+      <div class="settings-card">
+        <div class="settings-header">
+          <h2 class="profile-title">Profile</h2>
+          <button id="closeSettings" class="close-settings">✕</button>
+        </div>
+        <div class="divider" aria-hidden="true"></div>
+
+        <!-- Profile Picture Section -->
+        <div class="profile-picture-section">
+          <div class="profile-picture-container">
+            <img id="profilePicture" src="image-removebg-preview (19).png" alt="Profile Picture"
+              class="profile-picture">
+          </div>
+          <label for="profilePictureUpload" class="upload-picture-btn">
+            📷 Upload Picture
+          </label>
+          <input type="file" id="profilePictureUpload" accept="image/*" style="display: none;">
+        </div>
+
+        <div class="divider" aria-hidden="true"></div>
+        <div class="settings-subtitle"><strong>Settings</strong></div>
+        <div class="settings-body">
+          <div class="setting-row">Dark Mode
+            <div class="toggle-switch" style="margin-left:8px">
+              <input type="checkbox" id="settingsThemeToggle" class="toggle-input"
+                aria-label="Toggle dark mode in settings">
+              <label for="settingsThemeToggle" class="toggle-label">
+                <span class="toggle-circle"></span>
+                <span class="toggle-text dark-text"> </span>
+                <span class="toggle-text light-text"> </span>
+              </label>
+            </div>
+          </div>
+          <div class="setting-row mode-row">Find/Report
+            <div class="toggle-switch">
+              <input type="checkbox" id="switchToggle" class="toggle-input" aria-label="Toggle Report/Find">
+              <label for="switchToggle" class="toggle-label">
+                <span class="toggle-circle"></span>
+                <span class="toggle-text dark-text"> </span>
+                <span class="toggle-text light-text"> </span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <nav class="dashboard-nav">
+      <button class="nav-tab" data-tab="home">🏠 Home</button>
+      <button class="nav-tab" data-tab="posts">📍 Posts</button>
+      <button class="nav-tab" data-tab="my-items">📦 My Items</button>
+      <button class="nav-tab" data-tab="messages">💬 Messages</button>
+      <button class="nav-tab" data-tab="saved">⭐ Saved</button>
+    </nav>
+
+    <main class="dashboard-content">
+      <div class="tab-content" id="home-tab">
+        <div class="home-hero">
+          <div class="home-title-container">
+            <h1 class="home-title">Stop the worries.</h1>
+            <h2 class="home-subtitle">Find your lost things effortlessly!</h2>
+          </div>
+        </div>
+      </div>
+      <div class="tab-content" id="posts-tab">
+        <div class="empty-state">
+          <p>📬 No posts yet. Browse items from other users or create your first post!</p>
+        </div>
+      </div>
+      <div class="tab-content" id="my-items-tab">
+        <div class="empty-state">
+          <p>📦 You haven't posted any items yet. <a href="#" class="action-link">Create a post</a></p>
+        </div>
+      </div>
+      <div class="tab-content" id="messages-tab">
+        <div class="empty-state">
+          <p>💬 No messages yet. Start connecting with other users!</p>
+        </div>
+      </div>
+      <div class="tab-content" id="saved-tab">
+        <div class="empty-state">
+          <p>⭐ No saved items yet. Save items to view them later!</p>
+        </div>
+      </div>
+    </main>
+
+    <!-- Sidebar Menu -->
+    <aside id="sideMenu" class="side-menu">
+      <div class="menu-header">
+        <h3>Menu</h3>
+        <button id="closeMenu" class="close-menu">✕</button>
+      </div>
+      <nav class="menu-nav">
+        <a href="#" class="menu-item">🏠 Home</a>
+        <a href="#" class="menu-item">🔍 Search</a>
+        <a href="#" class="menu-item post-item">➕ Post Item</a>
+        <a href="#" class="menu-item profile-item">
+          <img src="image-removebg-preview (19).png" alt="Profile Icon" class="icon-img"> Profile
+        </a>
+        <a href="#" class="menu-item">⚙️ Settings</a>
+        <a href="#" class="menu-item logout">🚪 Logout</a>
+      </nav>
+    </aside>
+
+    <!-- Post Item Modal (opens from sidebar 'Post Item' when on red side) -->
+    <div id="postModal" class="post-modal hidden" aria-hidden="true">
+      <div class="post-card">
+        <div class="post-header">
+          <h2>Post Your Lost Item's Details</h2>
+          <button id="closePost" class="close-post">✕</button>
+        </div>
+        <form id="postForm" class="post-form" novalidate>
+          <label class="field">What Did You Lose?
+            <select name="lostItem" required>
+              <option value="">Select an item</option>
+              <option>Phone</option>
+              <option>Wallet/Purse</option>
+              <option>Keys</option>
+              <option>Backpack/Handbag/Fannypack</option>
+              <option>Laptop/Ipad</option>
+              <option>Earphones/AirPods</option>
+              <option>Jacket/Sweatshirt</option>
+              <option>Watch</option>
+              <option>Glasses/Sunglasses</option>
+              <option>Jewellery</option>
+              <option>Toy</option>
+              <option>Important Documents</option>
+              <option>Books</option>
+              <option>Hat/Cap</option>
+              <option>Water Bottle</option>
+              <option>Camera</option>
+              <option>ID Proofs</option>
+              <option>Other</option>
+            </select>
+          </label>
+          <button class="btn accent" type="submit">Submit</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Slide-in panel for follow-up question -->
+    <div id="postDetailsPanel" class="post-details-panel hidden" aria-hidden="true">
+      <div class="post-details-card">
+        <div class="post-details-header">
+          <h3 id="postDetailsTitle">Where did you lose this item?</h3>
+          <button id="closeDetails" class="close-post">✕</button>
+        </div>
+        <div class="post-details-body">
+          <label class="field">Location
+            <input id="lostLocation" type="text" placeholder="e.g. Central Library, Bus Stop, Cafe" />
+          </label>
+          <div id="mapContainer" class="map-container hidden" style="margin-top:14px">
+            <iframe id="googleMap" width="100%" height="350" style="border:0; border-radius:8px;" loading="lazy"
+              allowfullscreen referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+          <label id="specificAreaLabel" class="field hidden" style="margin-top:14px">Any Specific Area in <span
+              id="locationName"></span>
+            <input id="specificArea" type="text" placeholder="e.g. Near the entrance, 2nd floor, parking lot" />
+          </label>
+          <div class="post-actions" style="margin-top:14px">
+            <button id="cancelDetails" class="btn" type="button">Cancel</button>
+            <button id="saveDetails" class="btn primary" type="button">Next</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Date/Time Selection Panel (slides in after location selection) -->
+    <div id="dateTimePanel" class="post-details-panel hidden" aria-hidden="true">
+      <div class="post-details-card">
+        <div class="post-details-header">
+          <h3 id="dateTimeTitle">When did you lose it?</h3>
+          <button id="closeDatetime" class="close-post">✕</button>
+        </div>
+        <div class="post-details-body">
+          <label class="field">Date Lost
+            <input id="dateLost" type="date" class="date-picker" required />
+          </label>
+          <label class="field" style="margin-top:14px">Time Range (Optional)
+            <div class="time-range-container">
+              <input id="timeFrom" type="time" class="time-picker" placeholder="From" />
+              <span class="time-separator">to</span>
+              <input id="timeTo" type="time" class="time-picker" placeholder="To" />
+            </div>
+          </label>
+          <div class="post-actions" style="margin-top:20px">
+            <button id="cancelDatetime" class="btn" type="button">Back</button>
+            <button id="saveDatetime" class="btn primary" type="button">Proceed to Description</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Description Panel (slides in after date/time selection) -->
+    <div id="descriptionPanel" class="post-details-panel hidden" aria-hidden="true">
+      <div class="post-details-card">
+        <div class="post-details-header">
+          <h3 id="descriptionTitle">Describe Your Lost Item</h3>
+          <button id="closeDescription" class="close-post">✕</button>
+        </div>
+        <div class="post-details-body scrollable-questions">
+          <form id="descriptionForm" class="description-form">
+            <!-- Questions will be dynamically inserted here -->
+            <div id="questionsContainer"></div>
+
+            <div class="post-actions" style="margin-top:20px">
+              <button id="cancelDescription" class="btn" type="button">Back</button>
+              <button id="saveDescription" class="btn primary" type="submit">Submit Post</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Image Modal for viewing images full screen -->
+  <div id="imageModal" class="image-modal hidden" aria-hidden="true">
+    <button id="closeImageModal" class="close-image-modal" aria-label="Close image">✕</button>
+    <img id="modalImage" src="" alt="Full size image" class="modal-image">
+  </div>
+
+  <script src="script.js"></script>
+  <script src="datetime-handlers.js"></script>
+  <script src="description-handlers.js"></script>
+</body>
+
+</html>
